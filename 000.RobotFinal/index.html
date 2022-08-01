@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 모바일은 아래 뷰포트 필수! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta:description -->
+    <meta name="description" content="About Everyday Robots" />
+    <meta name="keywords" content="Everyday, Robots, Daily, Program" />
+
+    <title>Everyday Robots Website Renewal</title>
+    <!-- 메인페이지 외부 css만 호출함(공통 css는 import됨) -->
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- <link rel="stylesheet" href="./css/media.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto@v3.0.4/css/fontisto/fontisto.min.css">
+
+    
+    <!-- 외부JS삽입 -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery-touch-punch.min.js"></script>
+         <!-- 부드러운 스크롤 -->
+    <script src="js/smoothScroll20.js"></script>
+    <script src="js/common.js"></script>
+
+
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        /* 드래그 선택 안되게 하는 CSS */
+        .dselect{
+            user-select: none;
+            /* 선택안되게함 */
+            -webkit-user-drag: none;
+            /* 드래그안되게함 */
+        }
+
+
+        /*움직일 갤러리 화면크기의 부모박스*/
+        #handle {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        /*갤러리 내용만큼 가로로큰 내부박스-움직일박스*/
+        #move {
+            position: absolute;
+            /*            width: 7200px;*/
+            height: 100%;
+        }
+
+        #move img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*플렉스박스!*/
+        #move>ul {
+            display: flex;
+        }
+
+        #move>ul li {
+            position: relative;
+            width: 480px;
+        }
+
+        /* h1 {
+            text-align: center;
+        } */
+
+        .appvid {
+            position: relative;
+            /*            width: 7200px;*/
+            /* height: 100%; */
+        }
+
+        #app img {
+            /* position: relative; */
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*플렉스박스!*/
+        .appvid>ul {
+            display: flex;
+        }
+
+        #app>ul li {
+            /* position: relative; */
+            width: 90px;
+        }
+    </style>
+
+<script>
+    $(()=>{
+        // 1. 드래그 대상: #move
+        let move = $("#move");
+
+        // 2. companies 박스 드래그설정
+        $("#move").draggable({
+            axis: "x" // x축고정
+            // 축고정 ("y"는 y축고정)
+        });
+
+        // 3. 드래그 애니메이션 설정
+        move.css({
+            transition: "all 0.8s ease-out"
+        }); //////// css ////////
+
+
+        // 화면 기준값 (1/3)
+            // 첫번째 한계값
+            let fpt = $(window).width() / 3;
+            console.log("첫번째 한계값:",fpt);
+
+        // 마지막 한계값
+        // -> (움직일 박스 전체 가로크기) - (화면의 2/3크기)
+        let lpt = move.width() - (fpt*2);
+        console.log("마지막 한계값:",lpt);
+
+        $("html,body")
+        .on("mousedown mouseup mousemove",()=>{
+            console.log("마우스냐 터치냐?");
+
+
+            // 1. 움직이는 박스의 left위치값
+            let mpos = move.offset().left;
+            console.log("현재left:",mpos);
+
+
+            // 2. 처음 한계값 체크후 위치고정
+            if(mpos > fpt){
+                // 첫번째 한계값에 고정
+                move.css({
+                    left: fpt+"px"
+                }); ////////// css //////////////////
+            } ///////////////// if /////////////////
+
+
+            // 3. 마지막 한계값 체크후 위치고정
+            if(mpos < -lpt){
+                // 마지막 한계값에 고정
+                move.css({
+                    left: -lpt+"px"
+                }); ////////// css //////////////////
+            } ///////////////// if /////////////////
+
+        }); ///////////////////// mousemove /////////////
+
+    }); //////////////jQB ///////////////
+    </script>
+
+
+</head>
+
+<body class="scbar">
+
+    <div id="top">
+        <header class="ibx top">
+            <!-- 1-1. 메인로고 -->
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="./imgs/ERlogo.png" alt="ER로고">
+                </a>
+            </h1>
+            <!-- 1-2. 탑메뉴 -->
+            <aside class="tmenu">
+
+                <!-- 플렉스박스 -->
+                <ul class="fbx">
+                    <li>
+                        <a href="#">Email</a>
+                    </li>
+                    <!-- <li>
+                        <a href="#">Search</a>
+                    </li> -->
+                    <li>
+                        <!-- sns 메뉴 -->
+                        <!-- 플렉스박스 -->
+                        <ol class="sns fbx">
+                            <li>
+                                <a href="#" title="트위터 바로가기">
+                                    <span class="ir">
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="ir" title="인스타그램 바로가기">
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="ir" title="페이스북 바로가기">
+                                    </span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
+
+            </aside>
+            <!-- 1-3. GNB메뉴 -->
+            <nav class="gnb">
+
+                <!-- 플렉스박스+가로중앙 -->
+                <ul class="fbx jcc">
+                    <li class="sm">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Technology</a>
+                    </li>
+                    <li class="sm">
+                        <a href="#">Vision</a>
+                    </li>
+                    <li class="sm">
+                        <a href="#">Join Us</a>
+                    </li>
+                    <li>
+                        <a href="#" class="fi fi-search">
+                            <span class="ir"></span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- </nav> -->
+        </header>
+    </div>
+    <!-- <h1>Everyday Robots</h1> -->
+
+
+    <!--1. 상단영역-->
+
+
+    <!-- 2. 메인영역 -->
+    <div id="cont">
+        <main class="cont">
+            <div class="rbxIn scAct">
+
+                <div class="tinfo">
+                    <!-- 2-2-1.제목 -->
+                    <h2>Helper robots <br>
+                        for a better <br>
+                        everyday</h2>
+                    <!-- 2-2-3.내용단락 -->
+                    <p>
+                        Born from X, the moonshot factory, <br>
+                        and working alongside teams at Google, <br>
+                        we’re building a new type of robot. <br>
+                        One that can learn by itself, <br>
+                        to help anyone with anything.
+                        <br><br>
+                    </p>
+                </div>
+                <!-- 2-1. 메인 비디오 -->
+                <video id="screen" src="imgs/tech-pg-video2.mp4" autoplay muted loop playsinline></video>
+
+                <div class="tinfo1">
+                    <p>
+                        Elfin-P is a lightweight 6-axis collaborative robot developed based on Elfin that can be used in automated integrated production lines, assembly, picking, welding, grinding, spraying, dispensing, inspecting and other applications. The high repeatability and protection rating ensures it can be used freely in complex working environments.
+                    </p>
+                </div>
+
+                <div class="tinfo">
+                    <h2>
+                        A moonshot <br>
+                        for Robotics <br>
+                    </h2>
+
+                    <p>
+                        We believe helper robots have the <br>
+                        potential to ultimately help everyone, everywhere. <br>
+                        From offices, to institutions of care, <br>
+                        to eventually in our homes, they’ll make our lives <br>
+                        easier by lending us a helping hand.
+                    </p>
+                </div>
+
+                
+                <h3>
+                    Applications
+                </h3>
+
+                <div class="appvid">
+                    <ul class="list">
+                        <li>
+                <video id="app" src="imgs/application1(building-inspection).mp4" autoplay muted loop playsinline></video>
+                <div id="videxp">
+                <p>
+                    Building inspection and air <br>
+                    quality monitoring <br>
+            </div>
+            </li>
+            <li>
+                <video id="app" src="imgs/application2(surface-inspection).mp4" autoplay muted loop playsinline></video>
+                <div id="videxp">
+                <p>
+                    Surface inspection of <br>
+                    hazards, spills, waste, <br>
+                    dust, debris and dirt <br>
+                </p>
+                </p>
+            </div>
+            </li>
+            <li>
+                <video id="app" src="imgs/application3(surface-wiping).mp4" autoplay muted loop playsinline></video>
+                <div id="videxp">
+                <p>
+                    Surface wiping and <br>
+                    disinfection <br>
+                </p>
+                </div>
+            </li>
+            </ul>
+            </div>
+
+                <!-- Topic3 -->
+                <h3>
+                    <!-- We serve Humanity -->
+                </h3>
+
+                <!-- Topic 4 -->
+                <h2>
+                    Hot Topics
+                </h2>
+                <!-- 캘린더처럼 날짜별로 everyday robots 이벤트 구성 -->
+
+                <!-- Topic 5 -->
+                    
+                    <h5 class="dselect">Building with teams across Alphabet</h5>
+                    <div id="handle">
+                        <div id="move">
+                            <ul class="dselect">
+                                <li>
+                                    <div id="logo1">
+                                    <img src="imgs/4 logo-02.png" alt="items">
+                                    </div>
+                                    <div id="exp">
+                                    <p>
+                                        Our robots already assist in some Google buildings, helping to keep our offices clean and safe, all while gathering the real-world experience they need to take on more and more tasks, in more and more places.
+                                    </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div id="logo1">
+                                        <img src="imgs/4 logo-04.png" alt="items">
+                                    </div>
+                                    <div id="exp">
+                                        <p>
+                                            Partnering with Google Research, we’re advancing machine learning technologies in reinforcement learning, imitation learning, multi-task learning and lidar segmentation technologies — helping our robots learn faster, and better.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div id="logo1">
+                                        <img src="imgs/4 logo-01.png" alt="items">
+                                    </div>
+                                    <div id="exp">
+                                        <p>
+                                            We collaborate with DeepMind, pursuing breakthroughs in technology that allows robots to learn skills more efficiently from human demonstrations, and improve their own performance through trial and error.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div id="logo1">
+                                        <img src="imgs/4 logo-03.png" alt="items">
+                                    </div>
+                                <div id="exp">
+                                    <p>
+                                        Waymo has spent years researching lidar technology that helps self-driving vehicles understand and navigate the world. We work closely with them to push this technology even further, improving our robots and their cars in tandem.
+                                    </p>
+                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </main>
+    </div>
+
+
+
+    <!-- 3. 하단영역 -->
+    <div id="info">
+        <footer class="ibx info">
+            <!-- 3-1. 하단링크 -->
+            <div class="blink">
+                <!-- 플렉스박스+가로중앙 -->
+                <ul class="fbx jcc">
+                    <li>
+                        <a href="#">Products</a>
+                    </li>
+                    <li>
+                        <a href="#">Industries</a>
+                    </li>
+                    <li>
+                        <a href="#">Applications</a>
+                    </li>
+                    <li>
+                        <a href="#">Support</a>
+                    </li>
+                    <li>
+                        <a href="#">Partner</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- 3-2. 회사정보 -->
+            <div class="addr">
+                <address>
+                    Copyright 2022 X Development LLC. All rights reserved.
+                </address>
+            </div>
+
+
+            <!-- 3-3. 하단로고 -->
+            <div class="blogo">
+                <img src="./imgs/blogo.png" alt="하단로고">
+            </div>
+
+
+    </div>
+    </footer>
+    </div>
+
+    <!-- 위로가기버튼 -->
+    <a href="#" class="tbtn fi fi-angle-up">
+        <span class="ir"></span>
+    </a>
+</body>
+
+</html>
