@@ -17,6 +17,7 @@ font-family: 'IBM Plex Sans', sans-serif;
  /* 전체 웹폰트 일반적용! */
  body{
     font-family: 'IBM Plex Sans', sans-serif;
+    color: whitesmoke;
  }
 
 /* h1{
@@ -35,21 +36,30 @@ h2{
 
 
  h3{
+    padding-bottom: 40px;
     padding-top: 167px;
     font-size: 50px;
     text-align: center;
  }
 
- .videxp{
-
- }
 
 
 h5{
     font-size: 50px;
     text-align: center;
+    padding: 66px;
 }
 
+h6{
+    font-size: 23px;
+    text-align: center;
+    padding: 15px;
+}
+
+#exp p{
+    text-align: center;
+
+}
 
 
 
